@@ -12,11 +12,31 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ { import = "a.plugins" }, { import = "a.plugins.lsp" } }, {
- checker = {
-   enabled = true,
-   notify = false,
- },
- change_detection = {
-   notify = false,
- },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+})
+
+require("lazy").setup({
+  { import = "a.plugins" },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
 })
