@@ -2,6 +2,7 @@ return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
+    "zbirenbaum/copilot-cmp",
     "hrsh7th/cmp-buffer", -- source for text in buffer
     "hrsh7th/cmp-path", -- source for file system paths
     {
@@ -17,9 +18,7 @@ return {
   },
   config = function()
     local cmp = require("cmp")
-
     local luasnip = require("luasnip")
-
     local lspkind = require("lspkind")
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
@@ -45,18 +44,22 @@ return {
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = "nvim_lsp"},
-        { name = "luasnip" }, -- snippets
-        { name = "buffer" }, -- text within current buffer
-        { name = "path" }, -- file system paths
+        { name = "copilot", group_index = 2 },
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "luasnip", group_index = 2 }, -- snippets
+        { name = "buffer", group_index = 2 }, -- text within current buffer
+        { name = "path", group_index = 2 }, -- file system paths
       }),
 
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
+        fields = { "abbr", "kind", "menu" },
         format = lspkind.cmp_format({
+          symbol_map = { Copilot = "" },
           maxwidth = 50,
           ellipsis_char = "...",
         }),
+        expandable_indicator = true,
       },
     })
   end,
