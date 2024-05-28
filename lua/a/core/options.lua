@@ -14,12 +14,12 @@ set.shiftwidth = 2 -- 2 spaces for indent width
 set.expandtab = true -- expand tab to spaces
 set.autoindent = true -- copy indent from current line when starting new one
 
-set.wrap = false
+set.wrap = true
 
 set.ignorecase = true
 set.smartcase = true
 
--- set.cursorline = true
+set.cursorline = true
 
 set.termguicolors = true
 set.background = "dark"
@@ -32,3 +32,11 @@ set.splitright = true
 set.splitbelow = true
 
 set.swapfile = false
+
+set.foldmethod = "expr"
+set.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+set.foldcolumn = "0"
+set.foldtext = ""
+set.foldlevel = 99
+set.foldlevelstart = 1
+set.foldnestmax = 4
